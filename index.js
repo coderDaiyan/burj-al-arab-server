@@ -1,5 +1,7 @@
 const express = require("express");
 const cors = require("cors");
+require("dotenv").config();
+console.log(process.env.DB_PASS);
 
 const port = 4000;
 
@@ -9,12 +11,9 @@ app.use(express.json());
 const MongoClient = require("mongodb").MongoClient;
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ko38m.mongodb.net/burjAlArabDatabase?retryWrites=true&w=majority`;
 
-require("dotenv").config();
-console.log(process.env.DB_PASS);
-
 const admin = require("firebase-admin");
 
-const serviceAccount = require("./burj-al-arab-d690c-firebase-adminsdk-xael5-5e9492890d.json");
+const serviceAccount = require("./configs/burj-al-arab-d690c-firebase-adminsdk-xael5-5e9492890d.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
